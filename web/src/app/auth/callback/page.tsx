@@ -2,21 +2,33 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import type { EmailOtpType } from "@supabase/supabase-js";
 import { safeNext, withBase } from "@/lib/base";
 import { createBrowserDb } from "@/lib/supabase/browser";
 
-// Vuelta del enlace de confirmación de correo: canjea el código por una sesión en el navegador.
+// Vuelta de los enlaces de los mails (confirmar cuenta, recuperar contraseña, etc.).
+// Los mails traen un token_hash que se verifica en cualquier navegador o dispositivo;
+// el ?code= solo funciona en el navegador donde se pidió, así que queda como respaldo.
 export default function AuthCallbackPage() {
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const tokenHash = params.get("token_hash");
+    const type = params.get("type") as EmailOtpType | null;
     const code = params.get("code");
     const next = safeNext(params.get("next"));
-    if (!code) return setFailed(true);
-    createBrowserDb()
-      .auth.exchangeCodeForSession(code)
-      .then(({ error }) => (error ? setFailed(true) : window.location.replace(withBase(next))));
+    const db = createBrowserDb();
+
+    const verify =
+      tokenHash && type
+        ? db.auth.verifyOtp({ token_hash: tokenHash, type })
+        : code
+          ? db.auth.exchangeCodeForSession(code)
+          : null;
+
+    if (!verify) return setFailed(true);
+    verify.then(({ error }) => (error ? setFailed(true) : window.location.replace(withBase(next))));
   }, []);
 
   return (

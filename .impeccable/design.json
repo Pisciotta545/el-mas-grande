@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-22T00:00:00Z",
+  "title": "Design System: El más grande",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Papel", "canonical": "#ffffff", "tonalRamp": ["#1c1d1f", "#36383b", "#55585d", "#777a7f", "#9c9fa3", "#c3c5c8", "#e6e7e9", "#ffffff"] },
+      "sheet": { "role": "neutral", "displayName": "Hoja Gris", "canonical": "#f2f3f4", "tonalRamp": ["#1d1f21", "#373a3d", "#56595e", "#787c81", "#9ea1a6", "#c4c7ca", "#e3e5e7", "#f2f3f4"] },
+      "ink": { "role": "neutral", "displayName": "Tinta", "canonical": "#111214", "tonalRamp": ["#111214", "#2a2c30", "#4a4e54", "#6c7077", "#93979d", "#b9bcc1", "#d3d6da", "#f2f3f4"] },
+      "ink-2": { "role": "neutral", "displayName": "Tinta Media", "canonical": "#4a4e54", "tonalRamp": ["#111214", "#2a2c30", "#4a4e54", "#6c7077", "#93979d", "#b9bcc1", "#d3d6da", "#f2f3f4"] },
+      "rule": { "role": "neutral", "displayName": "Regla", "canonical": "#111214", "tonalRamp": ["#111214", "#2a2c30", "#4a4e54", "#6c7077", "#93979d", "#b9bcc1", "#d3d6da", "#f2f3f4"] },
+      "rule-soft": { "role": "neutral", "displayName": "Regla Suave", "canonical": "#d3d6da", "tonalRamp": ["#111214", "#2a2c30", "#4a4e54", "#6c7077", "#93979d", "#b9bcc1", "#d3d6da", "#f2f3f4"] },
+      "red": { "role": "primary", "displayName": "Rojo Banda", "canonical": "#d2102a", "tonalRamp": ["#3d0409", "#650812", "#a50c20", "#d2102a", "#e8505f", "#f28b95", "#f8c3c8", "#fdecee"] },
+      "red-deep": { "role": "primary", "displayName": "Rojo Banda Hondo", "canonical": "#a50c20", "tonalRamp": ["#3d0409", "#650812", "#a50c20", "#d2102a", "#e8505f", "#f28b95", "#f8c3c8", "#fdecee"] },
+      "on-red": { "role": "primary", "displayName": "Blanco sobre Rojo", "canonical": "#ffffff", "tonalRamp": ["#1c1d1f", "#36383b", "#55585d", "#777a7f", "#9c9fa3", "#c3c5c8", "#e6e7e9", "#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Archivo 62% / 900)", "purpose": "Wordmark y título de página, en mayúsculas." },
+      "headline": { "displayName": "Headline (Archivo 75% / 800)", "purpose": "Títulos de sección sobre la franja roja y títulos de entrevista." },
+      "title": { "displayName": "Title (Archivo 800)", "purpose": "Títulos en listas, beneficios, recuadros y datos destacados." },
+      "body": { "displayName": "Body (Archivo 400)", "purpose": "Interfaz general." },
+      "reading": { "displayName": "Reading (Source Serif 4)", "purpose": "Respuestas y bajadas de entrevistas, texto corrido de Info de River." },
+      "label": { "displayName": "Label (Archivo 700 mayúsculas)", "purpose": "Botones, meses bajo la fecha, cabeceras de tabla, términos de datos." },
+      "numeral": { "displayName": "Numeral (Archivo 62% / 900 tabular)", "purpose": "Día en filas de boleta, resultados, goles del prode, siglas y puntos." }
+    },
+    "shadows": [
+      { "name": "panel-flotante", "value": "0 12px 32px -12px rgb(17 18 20 / 0.35)", "purpose": "Sólo paneles que se abren sobre el contenido (menú desplegable)." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Curva única para todas las transiciones y entradas." },
+      { "name": "band-in", "value": "700ms clip-path inset(0 100% 0 0) -> inset(0)", "purpose": "La banda del encabezado entra cortando de izquierda a derecha al cargar." },
+      { "name": "menu-in", "value": "220ms opacity 0 + translateY(-6px) -> reposo", "purpose": "Apertura del panel del menú." },
+      { "name": "row-in", "value": "280ms opacity 0.4 + translateY(4px) -> reposo", "purpose": "Entrada de filas de boleta al filtrar." },
+      { "name": "state", "value": "160ms background-color, color", "purpose": "Hover e inversión de botones." },
+      { "name": "reduced-motion", "value": "duración 0.01ms", "purpose": "Con prefers-reduced-motion se anulan animaciones y transiciones." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "960px" },
+      { "name": "mobile", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Casillero rectangular de tinta; se invierte en hover o abierto.",
+      "html": "<button class=\"ds-btn\">Pronosticar en el prode <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--ink, #111214); border-radius: 0; background: var(--paper, #fff); color: var(--ink, #111214); font-family: Archivo, system-ui, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16,1,0.3,1), color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-btn svg { width: 18px; height: 18px; } .ds-btn:hover { background: var(--ink, #111214); color: var(--paper, #fff); } .ds-btn:focus-visible { outline: 2px solid var(--red, #d2102a); outline-offset: 2px; }"
+    },
+    {
+      "name": "Botón rojo",
+      "kind": "button",
+      "refersTo": "button-red",
+      "description": "La única acción principal de un bloque.",
+      "html": "<button class=\"ds-btn-red\">Guardar</button>",
+      "css": ".ds-btn-red { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--red, #d2102a); border-radius: 0; background: var(--red, #d2102a); color: var(--on-red, #fff); font-family: Archivo, system-ui, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; cursor: pointer; transition: background-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-red:hover { background: var(--red-deep, #a50c20); border-color: var(--red-deep, #a50c20); } .ds-btn-red:focus-visible { outline: 2px solid var(--red, #d2102a); outline-offset: 2px; }"
+    },
+    {
+      "name": "Campo",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Campo rectangular de tinta con cursor rojo; inválido sube a 2px rojo.",
+      "html": "<label class=\"ds-field\"><span>Email</span><input type=\"email\" placeholder=\"tu@email.com\"></label>",
+      "css": ".ds-field { display: grid; gap: 6px; font-family: Archivo, system-ui, sans-serif; } .ds-field span { font-size: 15px; font-weight: 700; } .ds-field input { min-height: 48px; padding: 0 12px; border: 1px solid var(--ink, #111214); border-radius: 0; background: var(--paper, #fff); font: inherit; font-size: 17px; caret-color: var(--red, #d2102a); } .ds-field input:focus-visible { outline: 2px solid var(--red, #d2102a); outline-offset: 2px; } .ds-field input[aria-invalid=\"true\"] { border: 2px solid var(--red, #d2102a); }"
+    },
+    {
+      "name": "Filtro con casillero",
+      "kind": "chip",
+      "refersTo": "filter",
+      "description": "Casillero cuadrado que se llena de rojo al marcar.",
+      "html": "<label class=\"ds-filter\"><input type=\"checkbox\" checked><span class=\"ds-box\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6 9 17l-5-5\"/></svg></span>Liga Profesional</label>",
+      "css": ".ds-filter { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px 0 8px; border: 1px solid var(--rule-soft, #d3d6da); font-family: Archivo, system-ui, sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; } .ds-filter:hover { border-color: var(--ink, #111214); } .ds-filter input { position: absolute; opacity: 0; } .ds-box { display: inline-grid; place-items: center; width: 20px; height: 20px; border: 1px solid var(--ink, #111214); background: var(--paper, #fff); color: var(--on-red, #fff); } .ds-box svg { width: 14px; height: 14px; visibility: hidden; } .ds-filter:has(input:checked) { border-color: var(--ink, #111214); } .ds-filter:has(input:checked) .ds-box { background: var(--red, #d2102a); border-color: var(--red, #d2102a); } .ds-filter:has(input:checked) .ds-box svg { visibility: visible; } .ds-filter:has(input:focus-visible) { outline: 2px solid var(--red, #d2102a); outline-offset: 2px; }"
+    },
+    {
+      "name": "Fila de boleta",
+      "kind": "custom",
+      "refersTo": "time-confirmed",
+      "description": "Fecha numerada, partido con River en rojo, hora en casillero sólido o punteado.",
+      "html": "<ul class=\"ds-rows\"><li class=\"ds-row\"><span class=\"ds-date\"><b>29</b><small>DOM<br>NOV</small></span><span class=\"ds-match\"><strong><em>River Plate</em> – Racing Club</strong><span>Liga Profesional · Fecha 15 · Estadio Monumental</span></span><span class=\"ds-kick\">17:00 h</span></li><li class=\"ds-row\"><span class=\"ds-date\"><b>3</b><small>JUE<br>DIC</small></span><span class=\"ds-match\"><strong><em>River Plate</em> – Talleres</strong><span>Copa Argentina · Semifinal</span></span><span class=\"ds-tbc\">Hora a confirmar</span></li><li class=\"ds-row ds-played\"><span class=\"ds-date\"><b>18</b><small>MIÉ<br>NOV</small></span><span class=\"ds-match\"><strong><em>River Plate</em> – Huracán</strong><span>Cuartos de final</span></span><span class=\"ds-score\">3–1</span></li></ul>",
+      "css": ".ds-rows { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rule, #111214); font-family: Archivo, system-ui, sans-serif; } .ds-row { display: grid; grid-template-columns: 76px minmax(0,1fr) auto; gap: 16px; align-items: center; padding-block: 14px; border-bottom: 1px solid var(--rule-soft, #d3d6da); } .ds-date { display: grid; line-height: 1; } .ds-date b { font-stretch: 62%; font-weight: 900; font-size: 40px; line-height: 0.95; font-variant-numeric: tabular-nums; } .ds-date small { margin-top: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2, #4a4e54); } .ds-played .ds-date b { text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: var(--red, #d2102a); } .ds-match { display: grid; gap: 2px; } .ds-match strong { font-size: 20px; font-weight: 700; line-height: 1.25; } .ds-match em { font-style: normal; color: var(--red, #d2102a); } .ds-match span { font-size: 15px; color: var(--ink-2, #4a4e54); } .ds-kick, .ds-tbc { padding: 1px 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; } .ds-kick { border: 1px solid var(--ink, #111214); color: var(--ink, #111214); font-variant-numeric: tabular-nums; } .ds-tbc { border: 1px dashed var(--ink-2, #4a4e54); color: var(--ink-2, #4a4e54); text-transform: uppercase; } .ds-score { font-stretch: 62%; font-weight: 900; font-size: 32px; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Sello",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "Certifica una acción hecha: borde rojo de 2px, rotado -2°.",
+      "html": "<span class=\"ds-stamp\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg>Pronóstico cargado</span>",
+      "css": ".ds-stamp { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 2px solid var(--red, #d2102a); color: var(--red, #d2102a); font-family: Archivo, system-ui, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; transform: rotate(-2deg); } .ds-stamp svg { width: 14px; height: 14px; }"
+    },
+    {
+      "name": "Encabezado de sección con franja",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Título comprimido sobre la franja roja de 10px.",
+      "html": "<div class=\"ds-section-head\"><h2>Más entrevistas</h2><a href=\"#\">Ver todas</a></div>",
+      "css": ".ds-section-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; padding-bottom: 12px; border-bottom: 10px solid var(--red, #d2102a); font-family: Archivo, system-ui, sans-serif; } .ds-section-head h2 { margin: 0; font-stretch: 75%; font-weight: 800; font-size: clamp(36px, 5vw, 56px); line-height: 1; text-transform: uppercase; } .ds-section-head a { color: var(--ink, #111214); font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; text-underline-offset: 0.2em; } .ds-section-head a:hover { color: var(--red, #d2102a); } .ds-section-head a:focus-visible { outline: 2px solid var(--red, #d2102a); outline-offset: 2px; }"
+    },
+    {
+      "name": "Menú desplegable",
+      "kind": "nav",
+      "refersTo": "check-box-on",
+      "description": "Panel rectangular con casillero marcado en la sección actual; única sombra del sistema.",
+      "html": "<ul class=\"ds-menu\"><li><a href=\"#\" aria-current=\"page\"><span class=\"ds-mbox ds-mbox-on\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6 9 17l-5-5\"/></svg></span><b>Entrevistas</b><small>Charlas con la gente de River</small></a></li><li><a href=\"#\"><span class=\"ds-mbox\"></span><b>Prode y puntos</b><small>Pronosticá cada partido y sumá</small></a></li></ul>",
+      "css": ".ds-menu { width: 380px; margin: 0; padding: 0; list-style: none; border: 1px solid var(--ink, #111214); background: var(--paper, #fff); box-shadow: 0 12px 32px -12px rgb(17 18 20 / 0.35); font-family: Archivo, system-ui, sans-serif; } .ds-menu li + li { border-top: 1px solid var(--rule-soft, #d3d6da); } .ds-menu a { display: grid; grid-template-columns: 20px 1fr; gap: 2px 12px; padding: 12px 16px; color: var(--ink, #111214); text-decoration: none; } .ds-menu a:hover { background: var(--sheet, #f2f3f4); } .ds-menu a:focus-visible { outline: 2px solid var(--red, #d2102a); outline-offset: 2px; } .ds-menu b { font-size: 17px; line-height: 1.25; } .ds-menu small { grid-column: 2; font-size: 15px; color: var(--ink-2, #4a4e54); } .ds-mbox { display: inline-grid; place-items: center; width: 20px; height: 20px; margin-top: 2px; border: 1px solid var(--ink, #111214); color: var(--on-red, #fff); } .ds-mbox svg { width: 14px; height: 14px; } .ds-mbox-on { background: var(--red, #d2102a); border-color: var(--red, #d2102a); }"
+    },
+    {
+      "name": "Recuadro de ingreso",
+      "kind": "card",
+      "refersTo": "gate",
+      "description": "Pide iniciar sesión para desbloquear prode, sorteos y códigos.",
+      "html": "<div class=\"ds-gate\"><p class=\"ds-gate-title\">Ingresá para jugar</p><p>Con tu cuenta guardás los pronósticos y sumás puntos en el ranking.</p><a class=\"ds-gate-btn\" href=\"#\">Ingresar o crear cuenta</a></div>",
+      "css": ".ds-gate { display: grid; gap: 12px; justify-items: start; padding: 24px; border: 1px solid var(--ink, #111214); background: var(--sheet, #f2f3f4); font-family: Archivo, system-ui, sans-serif; } .ds-gate p { margin: 0; } .ds-gate-title { font-size: 24px; font-weight: 800; } .ds-gate-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; background: var(--red, #d2102a); color: var(--on-red, #fff); font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; } .ds-gate-btn:hover { background: var(--red-deep, #a50c20); } .ds-gate-btn:focus-visible { outline: 2px solid var(--red, #d2102a); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La boleta de prode cruzada por la banda",
+    "overview": "El producto entero se imprime como una boleta de prode o un fixture de kiosco: papel blanco frío, tinta casi negra, filas numeradas separadas por reglas finas, casilleros cuadrados que se tildan y sellos que certifican. Sobre ese papel pasa un solo rojo, el de River, que nunca decora: ocupa franjas enteras. La banda diagonal del encabezado baja de arriba a la izquierda hacia abajo a la derecha, como la banda de la camiseta vista de frente, y la misma franja (10px) vuelve como separador de cada sección y del pie.\n\nLa densidad es la de un impreso deportivo: mucha información tabular, alineada a una grilla de 8px, sin tarjetas con foto, sin fondos oscuros, sin brillos. La jerarquía la dan el ancho y el peso de Archivo (comprimido y negro para títulos y números, normal para la interfaz) y la Source Serif 4 para lo que se lee con calma. El estado se expresa con una marca y no con un color: un casillero tildado, una fecha tachada, un sello, un trazo sólido o punteado.\n\nEste sistema es compartido: la app móvil del mismo producto reutiliza estos tokens, la banda, las filas de boleta, los casilleros cuadrados, los sellos y la distinción sólido/punteado entre lo confirmado y lo provisorio.",
+    "keyCharacteristics": [
+      "Blanco papel, tinta casi negra y un solo rojo usado en franjas enteras.",
+      "Banda diagonal en el encabezado; franja roja de 10px como separador de sección.",
+      "Filas de boleta con número grande comprimido a la izquierda y reglas de 1px.",
+      "Cero radios: botones, campos, casilleros y paneles son rectángulos.",
+      "Estado como marca: tilde, tachado, sello, trazo sólido vs. punteado.",
+      "Números tabulares en todo lo que se compara (fechas, goles, tablas, horarios)."
+    ],
+    "rules": [
+      { "name": "The Una Sola Tinta de Color Rule", "body": "El rojo es el único color del sistema. No se agregan verdes de \"éxito\", amarillos de alerta ni azules de enlace: el éxito es un sello rojo, el error es rojo hondo, el enlace se subraya.", "section": "colors" },
+      { "name": "The Franja Entera Rule", "body": "El rojo aparece como bloque sólido (banda, franja, botón, casillero lleno, fila de tabla) o como texto de nombre propio de River. Nunca como degradé, tinte, transparencia o sombra de color.", "section": "colors" },
+      { "name": "The Ancho Manda Rule", "body": "La jerarquía se arma con el eje de ancho de Archivo: 62% para display y cifras, 75% para encabezados, 100% para interfaz. No se cambia de familia para jerarquizar.", "section": "typography" },
+      { "name": "The Cifra Tabular Rule", "body": "Todo número que se compara con otro (fechas, goles, horarios, columnas de tabla, puntos) va con `tabular-nums`.", "section": "typography" },
+      { "name": "The Serif Es Lectura Rule", "body": "Source Serif 4 sólo para texto de lectura corrida. Nunca en botones, etiquetas, tablas ni títulos.", "section": "typography" },
+      { "name": "The Grilla Única Rule", "body": "Ningún valor de espaciado fuera de la escala de 8px; si un bloque necesita aire, se suma una unidad, no un valor suelto.", "section": "layout" },
+      { "name": "The Papel Plano Rule", "body": "Nada en reposo tiene sombra. Filas, tarjetas de equipo, recuadros y botones son planos; se separan con reglas o con Hoja Gris.", "section": "elevation" },
+      { "name": "The Sin Radios Rule", "body": "`border-radius: 0` siempre. El casillero es cuadrado porque es un casillero de boleta.", "section": "shapes" },
+      { "name": "The Sólido o Punteado Rule", "body": "Lo confirmado lleva trazo sólido; lo provisorio, trazo punteado en tinta media (hora a confirmar, contenido de ejemplo, beneficio bloqueado hasta iniciar sesión). Al pasar el cursor sobre algo bloqueado, el trazo se vuelve sólido rojo.", "section": "shapes" }
+    ],
+    "dos": [
+      "**Do** usar el rojo en bloques enteros: banda, franja de 10px, botón principal, casillero lleno, fila de River.",
+      "**Do** escribir el nombre de River en rojo dentro de cualquier partido, fila o pronóstico.",
+      "**Do** mostrar el estado con una marca: casillero tildado, día tachado, sello rotado, trazo sólido vs. punteado.",
+      "**Do** marcar como punteado todo lo provisorio o bloqueado, y como sólido todo lo confirmado.",
+      "**Do** usar Archivo 62%/900 con cifras tabulares para fechas, goles y puntos.",
+      "**Do** espaciar en múltiplos de 8px y mantener controles de al menos 44px.",
+      "**Do** marcar el contenido de ejemplo como tal con el aviso punteado o una nota en Tinta Media."
+    ],
+    "donts": [
+      "**Don't** redondear ninguna esquina.",
+      "**Don't** agregar un segundo color de acento ni colores semánticos (verde, amarillo, azul).",
+      "**Don't** poner sombras en elementos en reposo; la sombra es sólo para paneles que flotan.",
+      "**Don't** usar el escudo oficial ni marcas registradas del club; la identidad es la banda y el wordmark.",
+      "**Don't** armar portadas con tarjetas con foto ni pasar a fondo oscuro tipo app de apuestas.",
+      "**Don't** poner rótulos en mayúsculas encima de los títulos; las etiquetas en mayúsculas son sólo de datos y controles.",
+      "**Don't** usar la serif fuera del texto de lectura."
+    ]
+  }
+}

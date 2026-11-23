@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+.env*
+*.log
+
+# Capturas y borradores de diseño (se regeneran)
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/
+.impeccable/config.local.json

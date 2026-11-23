@@ -11,7 +11,10 @@ const ERRORS: Record<string, string> = {
   "Invalid login credentials": "El correo o la contraseña no coinciden. Revisalos y probá de nuevo.",
   "Email not confirmed": "Todavía no confirmaste el correo. Buscá el mail que te mandamos y tocá el enlace.",
   "User already registered": "Ya hay una cuenta con ese correo. Probá ingresar.",
+  "Database error saving new user": "No pudimos crear la cuenta. Probá con otro nombre de hincha.",
 };
+
+const USERNAME_TAKEN = "Ese nombre de hincha ya está en uso. Probá con otro.";
 
 export function AuthForm() {
   const params = useSearchParams();
@@ -22,6 +25,7 @@ export function AuthForm() {
     params.get("error") === "enlace" ? "El enlace venció o ya se usó. Ingresá con tu correo y contraseña." : null,
   );
   const [sentTo, setSentTo] = useState<string | null>(null);
+  const [usernameError, setUsernameError] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,6 +36,7 @@ export function AuthForm() {
 
     setPending(true);
     setError(null);
+    setUsernameError(null);
 
     if (mode === "login") {
       const { error } = await db.auth.signInWithPassword({ email, password });
@@ -43,6 +48,12 @@ export function AuthForm() {
     }
 
     const username = String(form.get("username")).trim();
+    const { data: available } = await db.rpc("username_available", { p_username: username });
+    if (available === false) {
+      setPending(false);
+      return setUsernameError(USERNAME_TAKEN);
+    }
+
     const { data, error } = await db.auth.signUp({
       email,
       password,
@@ -94,8 +105,19 @@ export function AuthForm() {
               maxLength={24}
               pattern="[A-Za-z0-9_.]+"
               autoComplete="nickname"
+              aria-invalid={!!usernameError}
+              aria-describedby="username-help"
+              onChange={() => usernameError && setUsernameError(null)}
             />
-            <small>Es el que aparece en el ranking del prode. Letras, números, punto o guion bajo.</small>
+            {usernameError ? (
+              <p id="username-help" className="form-msg form-msg--error" role="alert">
+                {usernameError}
+              </p>
+            ) : (
+              <small id="username-help">
+                Es el que aparece en el ranking del prode. Letras, números, punto o guion bajo.
+              </small>
+            )}
           </div>
         )}
         <div className="field">

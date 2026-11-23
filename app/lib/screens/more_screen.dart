@@ -5,6 +5,7 @@ import '../format.dart';
 import '../models.dart';
 import '../session.dart';
 import '../theme.dart';
+import '../updater.dart';
 import '../widgets.dart';
 import 'auth_screen.dart';
 import 'interview_screen.dart';
@@ -54,6 +55,24 @@ class MoreScreen extends StatelessWidget {
         }),
         _Row('Info de River', 'Historia, estadio y títulos', () => push(const RiverScreen())),
         _Row('Otros equipos', 'Los rivales, uno por uno', () => push(const TeamsScreen())),
+        const SizedBox(height: Space.u * 5),
+        const SectionHead('La app'),
+        FutureBuilder<String>(
+          future: installedVersion(),
+          builder: (context, snap) => Text(
+            snap.hasData ? 'Tenés la versión ${snap.data}.' : ' ',
+            style: Txt.ui(16, color: Palette.ink2),
+          ),
+        ),
+        const SizedBox(height: Space.u * 2),
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton.icon(
+            onPressed: () => offerUpdate(context, quiet: false),
+            icon: const Icon(Icons.system_update_alt, size: 18),
+            label: const Text('BUSCAR ACTUALIZACIONES'),
+          ),
+        ),
         const SizedBox(height: Space.u * 5),
         Text(
           'El más grande es una app hecha por hinchas. No tiene relación oficial con el Club Atlético River Plate. '

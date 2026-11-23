@@ -28,6 +28,12 @@ flutter pub get
 .uild_apk.ps1 -Debug   # ElMasGrande-v<versión>-debug.apk
 ```
 
+### Publicar una versión nueva (auto actualización)
+
+1. Subí la versión en `app/pubspec.yaml` (por ejemplo `1.1.0+2` → `1.2.0+3`; el número después del `+` tiene que crecer siempre).
+2. `.\publicar.ps1 -Notas "Qué cambió"` en `app/`: corre las pruebas, genera el APK y lo sube como Release de GitHub.
+3. Las apps instaladas lo detectan al abrirse (o con "Buscar actualizaciones" en Más), lo descargan y abren el instalador de Android.
+
 El nombre del APK sale de `android:label` y la versión de `pubspec.yaml`. La versión final se firma con `app/android/keys/el-mas-grande-upload.jks` y `app/android/key.properties`, que no están en git: sin ellos no se pueden publicar actualizaciones de la app, así que hay que guardarlos en un lugar seguro.
 
 ## Publicación

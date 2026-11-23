@@ -12,6 +12,7 @@ import 'screens/more_screen.dart';
 import 'screens/prode_screen.dart';
 import 'session.dart';
 import 'theme.dart';
+import 'updater.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +61,13 @@ class Shell extends StatefulWidget {
 
 class _ShellState extends State<Shell> {
   int _tab = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Al abrir, si hay una versión nueva publicada, se ofrece instalarla.
+    WidgetsBinding.instance.addPostFrameCallback((_) => offerUpdate(context));
+  }
 
   @override
   Widget build(BuildContext context) {

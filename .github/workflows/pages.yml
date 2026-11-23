@@ -3,6 +3,8 @@ name: Publicar en GitHub Pages
 on:
   push:
     branches: [main]
+    # La app Android no cambia el sitio: solo se publica cuando cambia la web.
+    paths: ["web/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
   # Cada hora: el sitio es estático y así trae entrevistas, partidos y tablas nuevas de Supabase.
   schedule:

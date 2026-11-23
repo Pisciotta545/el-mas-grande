@@ -5,6 +5,7 @@ Sitio de hinchas de River: entrevistas, próximos partidos con buscador y filtro
 Publicado en https://pisciotta545.github.io/el-mas-grande/
 
 - `web/`: el sitio (Next.js, exportado como estático para GitHub Pages).
+- `app/`: la app Android (Flutter), con las mismas cuentas y datos de Supabase.
 - `supabase/`: esquema de la base (`migrations/`) y datos de prueba (`seed.sql`).
 - `DESIGN.md`: sistema de diseño. `PRODUCT.md`: qué es el producto.
 
@@ -17,6 +18,17 @@ npm run dev   # http://localhost:3100
 ```
 
 Necesita `web/.env.local` con `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (la clave publicable de Supabase, que es pública).
+
+## App Android
+
+```powershell
+cd app
+flutter pub get
+.uild_apk.ps1          # build/app/outputs/flutter-apk/ElMasGrande-v<versión>.apk
+.uild_apk.ps1 -Debug   # ElMasGrande-v<versión>-debug.apk
+```
+
+El nombre del APK sale de `android:label` y la versión de `pubspec.yaml`. La versión final se firma con `app/android/keys/el-mas-grande-upload.jks` y `app/android/key.properties`, que no están en git: sin ellos no se pueden publicar actualizaciones de la app, así que hay que guardarlos en un lugar seguro.
 
 ## Publicación
 
